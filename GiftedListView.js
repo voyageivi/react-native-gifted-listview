@@ -325,7 +325,8 @@ var GiftedListView = React.createClass({
         renderHeader={this.headerView}
         renderFooter={this._renderPaginationView}
         renderSeparator={this.renderSeparator}
-
+        
+        enableEmptySections={true}
         automaticallyAdjustContentInsets={false}
         scrollEnabled={this.props.scrollEnabled}
         canCancelContentTouches={true}
