@@ -58,6 +58,8 @@ var GiftedListView = React.createClass({
       renderSeparator: null,
       rowHasChanged:null,
       distinctRows:null,
+
+      autoLoad:true,
     };
   },
 
@@ -87,6 +89,8 @@ var GiftedListView = React.createClass({
 
     rowHasChanged:React.PropTypes.func,
     distinctRows:React.PropTypes.func,
+
+    autoLoad:React.PropTypes.bool,
   },
 
   _setPage(page) { this._page = page; },
@@ -316,6 +320,10 @@ var GiftedListView = React.createClass({
   },
 
   render() {
+     let autoLoadProps=this.props.autoLoad? {
+          onEndReached : this._onPaginate
+        }:{} ;
+    
     return (
       <ListView
         ref="listview"
@@ -332,6 +340,7 @@ var GiftedListView = React.createClass({
         canCancelContentTouches={true}
         refreshControl={this.props.refreshable === true ? this.renderRefreshControl() : null}
 
+        {...autoLoadProps}
         {...this.props}
 
         style={this.props.style}
